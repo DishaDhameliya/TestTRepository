@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Item List</h1>
+  
+    <a href="#" routerLink="/item/create/" class="btn btn-success">Create New Item</a>
+    
+    <table class="table table-bordered">
+      <tr>        
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>        
+        <th>Image</th>
+        <th width="220px">Action</th>
+      </tr>
+      <tr *ngFor="let item of items">        
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+        <td>            
+            <img src="https://localhost:44318/image/{{  item.image }}" width="100" height="100" alt="X"/>       
+        </td>
+        
+        <td>
+          <a href="#" [routerLink]="['/item/', item.id, 'view']" class="btn btn-info">View</a>
+          <a href="#" [routerLink]="['/item/', item.id, 'edit']" class="btn btn-primary">Edit</a>
+          <button type="button" (click)="deleteItem(item.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </table>
+ </div>

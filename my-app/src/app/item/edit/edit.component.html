@@ -1,0 +1,58 @@
+<div class="container">
+    <h3>Edit Item</h3>
+  
+    <a href="#" routerLink="/item/index" class="btn btn-primary">Back</a>
+        
+    <form [formGroup]="form" (ngSubmit)="submit()">
+  
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input 
+                formControlName="Name"
+                id="Name" 
+                type="text" 
+                [(ngModel)]="item.name"
+                class="form-control">
+            <div *ngIf="f.Name.touched && f.Name.invalid" class="alert alert-danger">
+                <div>Name is required.</div>
+            </div>
+        </div>
+         
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea 
+                formControlName="Description"
+                id="Description" 
+                type="text" 
+                [(ngModel)]="item.description"
+                class="form-control">
+            </textarea>
+            <div *ngIf="f.Description.touched && f.Description.invalid" class="alert alert-danger">
+                <div>Description is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Price">Price</label>
+            <input 
+                formControlName="Price"
+                id="Price" 
+                type="text" 
+                [(ngModel)]="item.price"
+                class="form-control"/>            
+            <div *ngIf="f.Price.touched && f.Price.invalid" class="alert alert-danger">
+                <div *ngIf="f.Price.errors.pattern">
+                    Only numeric value.
+                  </div>
+                <div *ngIf="f.Price.errors.required">
+                    Price is required.
+                  </div>   
+                  <div *ngIf="f.Price.errors.minLength">
+                    Min Length is 0.50
+                  </div>  
+            </div>
+        </div>
+        
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+    </form>
+</div>

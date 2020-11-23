@@ -1,0 +1,70 @@
+<div class="container">
+    <h1>Create Item</h1>
+  
+    <a href="#" routerLink="/item/index" class="btn btn-primary">Back</a>
+        
+    <form [formGroup]="form" (ngSubmit)="submit()">
+  
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input 
+                formControlName="name"
+                id="name" 
+                type="text" 
+                class="form-control">
+            <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                <div>Name is required.</div>
+            </div>
+        </div>
+  
+        <div class="form-group">
+            <label for="Description">description</label>
+            <textarea 
+                formControlName="description"
+                id="description" 
+                type="text" 
+                class="form-control">
+            </textarea>
+            <div *ngIf="f.description.touched && f.description.invalid" class="alert alert-danger">
+                <div>Description is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <textarea 
+                formControlName="price"
+                id="price" 
+                type="text" 
+                class="form-control">
+            </textarea>
+            
+            <div *ngIf="f.price.touched && f.price.invalid" class="alert alert-danger">                
+                <div *ngIf="f.price?.errors?.pattern">
+                    Only numeric value.
+                  </div>
+                <div *ngIf="f.price?.errors?.required">
+                    Price is required.
+                  </div>        
+                  <div *ngIf="f.price?.errors?.minLength">
+                    Min Length is 0.50
+                  </div>             
+            </div>
+        </div>   
+
+        <div class="form-group">
+            <label for="file">File</label>
+            <input 
+                formControlName="file"
+                id="file" 
+                type="file" 
+                (change)="onFileChanged($event)"
+                class="form-control" />               
+            <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                <div *ngIf="f.file?.errors.required">File is required.</div>
+            </div>
+        </div>
+    
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>
