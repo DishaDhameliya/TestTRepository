@@ -29,8 +29,7 @@ export class CreateComponent implements OnInit {
       description: new FormControl('', Validators.required),
       price: new FormControl('', Validators.compose([
         Validators.pattern(/^[\d\.,]+$/)
-        ,Validators.required
-        ,Validators.minLength(0.50)
+        ,Validators.required        
        ])),
       file: new FormControl('', Validators.required),       
     });
@@ -45,9 +44,7 @@ export class CreateComponent implements OnInit {
     
     formData.append("file[]",this.fileData);  
     formData.append("data",JSON.stringify(this.form.value));
-    // this.form.value.forEach((value:string,key:string) => {
-    //   formData.append(key,this.form.value[key]);
-    // });
+    
     this.itemService.create(formData).subscribe(res => {         
          this.notifyService.showSuccess('Item created successfully!', "Success");
          this.router.navigateByUrl('item/index');

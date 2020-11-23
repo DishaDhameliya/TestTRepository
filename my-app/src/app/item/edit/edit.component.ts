@@ -37,8 +37,7 @@ export class EditComponent implements OnInit {
       Description: new FormControl('', Validators.required),
       Price: new FormControl('', Validators.compose([
         Validators.pattern(/^[\d\.,]+$/)
-        ,Validators.required
-        ,Validators.minLength(0.50)
+        ,Validators.required        
        ]))
     });
   }
